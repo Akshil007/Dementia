@@ -38,6 +38,7 @@ public class VisitServiceImpl implements VisitService {
             {
                 globalPid = new String(pid);
                 visitList = visitDao.getVisitSorted(pid);
+                System.out.println(visitList.size());
             }
             List<Visit> returnList = new ArrayList<>();
 
