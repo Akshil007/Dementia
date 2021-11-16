@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Queue;
 
 @RestController
-@RequestMapping("dementiaDOC")
+@RequestMapping("dementia/DOC")
 public class DoctorAppController {
 
     @Autowired

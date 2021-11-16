@@ -1,4 +1,4 @@
-package com.example.dementia.beans;
+package com.example.dementia.beans.JwtModel;
 
 public class JWTResponse {
     private String jwtToken;

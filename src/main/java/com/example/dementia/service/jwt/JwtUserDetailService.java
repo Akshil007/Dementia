@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,9 @@ import java.util.List;
 
 @Service
 public class JwtUserDetailService implements UserDetailsService {
+
+    @Autowired
+    PasswordEncoder bcryptEncoder;
 
     @Autowired
     LoginDao loginDao;
@@ -30,13 +34,17 @@ public class JwtUserDetailService implements UserDetailsService {
         }
     }
 
-    public void save(LoginDetails newUser) {
+    public LoginDetails save(LoginDetails user) {
         try {
-            loginDao.save(newUser);
+            LoginDetails newUser = new LoginDetails();
+            newUser.setUsername(user.getUsername());
+            newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
+            return loginDao.save(newUser);
         }
         catch (Exception e)
         {
             e.printStackTrace();
+            return null;
         }
     }
 }

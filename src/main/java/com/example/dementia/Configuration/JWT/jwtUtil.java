@@ -1,4 +1,4 @@
-package com.example.dementia.util;
+package com.example.dementia.Configuration.JWT;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

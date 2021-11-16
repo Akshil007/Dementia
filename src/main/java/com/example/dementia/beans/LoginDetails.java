@@ -1,5 +1,7 @@
 package com.example.dementia.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
@@ -7,13 +9,16 @@ import javax.persistence.*;
 @Entity
 public class LoginDetails {
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Column(unique = true)
     private String username;
 
+    //@JsonIgnore
     @Column
+    //@JsonIgnore()
     private String password;
 
     public LoginDetails() {
@@ -35,10 +40,12 @@ public class LoginDetails {
         this.username = username;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }

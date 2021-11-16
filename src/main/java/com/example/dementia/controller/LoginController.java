@@ -1,20 +1,20 @@
 package com.example.dementia.controller;
 
-import com.example.dementia.beans.JWTRequest;
-import com.example.dementia.beans.JWTResponse;
+import com.example.dementia.beans.JwtModel.JWTRequest;
+import com.example.dementia.beans.JwtModel.JWTResponse;
+import com.example.dementia.beans.LoginDetails;
 import com.example.dementia.service.jwt.JwtUserDetailService;
-import com.example.dementia.util.jwtUtil;
+import com.example.dementia.Configuration.JWT.jwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -51,5 +51,10 @@ public class LoginController {
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ResponseEntity<?> saveUser(@RequestBody LoginDetails user) throws Exception {
+        return ResponseEntity.ok(userDetailService.save(user));
     }
 }
