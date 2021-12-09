@@ -18,7 +18,10 @@ public class SurveyQuestions {
     private String version;
 
     @Column
-    String questionsJSON;
+    private String title;
+
+    @Column
+    private String sectionBody;
 
     public SurveyQuestions() {
     }
@@ -47,11 +50,19 @@ public class SurveyQuestions {
         this.version = version;
     }
 
-    public String getQuestionsJSON() {
-        return questionsJSON;
+    public String getSectionBody() {
+        return sectionBody;
     }
 
-    public void setQuestionsJSON(String questionsJSON) {
-        this.questionsJSON = questionsJSON;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setSectionBody(String sectionBody) {
+        this.sectionBody = sectionBody;
     }
 }

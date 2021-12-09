@@ -44,7 +44,7 @@ public class SurveyServiceImpl implements SurveyService {
             {
                 Map<String,Object> map = new HashMap<>();
                 map.put("surveyId",list.get(0).getSurveyId());
-                map.put("Questions",list.get(0).getQuestionsJSON());
+                map.put("Questions",list.get(0).getSectionBody());
                 return responseHandler.generateResponse(map,HttpStatus.OK);
             }
 
@@ -61,7 +61,7 @@ public class SurveyServiceImpl implements SurveyService {
     @Override
     public ResponseEntity<Object> getNextSection() {
         try{
-            // here we are returning most recent section of each section starting from section 1.
+            // here we are returning most recent version of each section starting from section 1.
             globalCurrentSection++;
             ArrayList<SurveyQuestions> list = surveyQuestionsDAO.getNextSection(Integer.toString(globalCurrentSection));
             if(list.size()==0)
@@ -72,7 +72,7 @@ public class SurveyServiceImpl implements SurveyService {
             {
                 Map<String,Object> map = new HashMap<>();
                 map.put("surveyId",list.get(0).getSurveyId());
-                map.put("Questions",list.get(0).getQuestionsJSON());
+                map.put("Questions",list.get(0).getSectionBody());
                 return responseHandler.generateResponse(map,HttpStatus.OK);
             }
 
