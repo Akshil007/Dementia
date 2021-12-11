@@ -20,7 +20,7 @@ public class SurveyQuestions {
     @Column
     private String title;
 
-    @Column
+    @Column(length = 100000)
     private String sectionBody;
 
     public SurveyQuestions() {

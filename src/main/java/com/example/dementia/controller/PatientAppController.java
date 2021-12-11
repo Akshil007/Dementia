@@ -6,23 +6,20 @@ import com.example.dementia.beans.SurveyQuestions;
 import com.example.dementia.beans.SurveyResponse;
 import com.example.dementia.dao.SurveyQuestionsDAO;
 import com.example.dementia.service.SurveyService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("dementia/PT")
 public class PatientAppController {
 
     @Autowired
     SurveyService surveyService;
-
-    @Autowired
-    SurveyQuestionsDAO surveyQuestionsDAO;
-
-    @Autowired
-    ResponseHandler responseHandler;
 
     @GetMapping("/getNextSection")
     public ResponseEntity<Object> getNextSurveySection()
@@ -42,18 +39,9 @@ public class PatientAppController {
         return surveyService.saveResponse(surveyResponse);
     }
 
-    @PostMapping("/addQuestionJson")
-    public ResponseEntity<Object> addQuestion(@RequestBody SectionBody sectionBody)
-    {
-        System.out.println(sectionBody.toString());
-
-        SurveyQuestions surveyQuestions = new SurveyQuestions();
-        surveyQuestions.setSectionNo(sectionBody.getSection());
-        surveyQuestions.setVersion(sectionBody.getVersion());
-        surveyQuestions.setTitle(sectionBody.getTitle());
-        surveyQuestions.setSectionBody(sectionBody.getListOfQuestions().toString());
-        surveyQuestionsDAO.save(surveyQuestions);
-        return responseHandler.generateResponse("", HttpStatus.OK);
+    @PostMapping("/addSection")
+    public ResponseEntity<Object> addQuestion(@RequestBody SectionBody sectionBody) throws JsonProcessingException {
+        return surveyService.addQuestion(sectionBody);
     }
 
 }

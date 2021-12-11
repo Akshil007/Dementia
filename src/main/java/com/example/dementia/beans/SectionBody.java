@@ -1,5 +1,4 @@
 package com.example.dementia.beans;
-
 import java.io.Serializable;
 import java.util.List;
 

@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("dementia/DOC")
 public class DoctorAppController {
