@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.csrf().disable()
+        httpSecurity.cors().and().csrf().disable()
                 // dont authenticate this particular request
                 .authorizeRequests().antMatchers("/dementia/authenticate","/dementia/register").permitAll().
                 // all other requests need to be authenticated

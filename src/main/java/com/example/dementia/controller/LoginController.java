@@ -14,7 +14,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("dementia")
 public class LoginController {
@@ -28,6 +27,7 @@ public class LoginController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @CrossOrigin(origins = "http://localhost:63342/")
     @RequestMapping(value = "/authenticate")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JWTRequest authenticationRequest) throws Exception {
 

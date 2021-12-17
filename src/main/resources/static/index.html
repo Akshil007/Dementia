@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function call()
+    {
+        let json_data={"username":"John", "password":"Doe"};
+        console.log("press")
+        axios
+            .post('localhost:8081/dementia/authenticate', {
+                "json_data" : JSON.stringify(json_data)
+            })
+            .then(response => {
+                document.getElementById("userProfileForm").submit();
+            })
+            .catch(error=> {
+                console.log("error")
+                document.getElementById("incorrectCred").innerText = "Incorrect username/password";
+            });
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <button type="button" onclick="call()">press</button>
+</body>
+
+</html>
