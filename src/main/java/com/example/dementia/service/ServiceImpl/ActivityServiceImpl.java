@@ -36,4 +36,17 @@ public class ActivityServiceImpl implements ActivityService {
             return null;
         }
     }
+
+    @Override
+    public ResponseEntity<Object> recordActivity(Activity activity) {
+        try {
+            activityDao.save(activity);
+            return responseHandler.generateResponse("Activity Recorded Successfully", HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ActivityService {
     ResponseEntity<Object> getAcivities(String pid);
+    ResponseEntity<Object> recordActivity(Activity e);
 }

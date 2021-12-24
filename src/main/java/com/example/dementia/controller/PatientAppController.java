@@ -1,7 +1,9 @@
 package com.example.dementia.controller;
 
+import com.example.dementia.beans.Activity;
 import com.example.dementia.beans.SectionBody;
 import com.example.dementia.beans.SurveyResponse;
+import com.example.dementia.service.ActivityService;
 import com.example.dementia.service.SurveyService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class PatientAppController {
 
     @Autowired
     SurveyService surveyService;
+
+    @Autowired
+    ActivityService activityService;
 
     @GetMapping("/getNextSection")
     public ResponseEntity<Object> getNextSurveySection()
@@ -32,6 +37,13 @@ public class PatientAppController {
     {
         return surveyService.saveResponse(surveyResponse);
     }
+
+    @PostMapping("/recordActivity")
+    public ResponseEntity<Object> saveResponse(@RequestBody Activity activity)
+    {
+        return activityService.recordActivity(activity);
+    }
+
 
     @PostMapping("/addSection")
     public ResponseEntity<Object> addQuestion(@RequestBody SectionBody sectionBody) throws JsonProcessingException {
