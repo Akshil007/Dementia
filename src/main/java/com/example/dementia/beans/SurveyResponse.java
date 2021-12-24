@@ -12,7 +12,7 @@ public class SurveyResponse {
     private int surveyId;
 
     @Id
-    private int pid;
+    private String pid;
 
     @Column
     private String responseJson;
@@ -28,11 +28,11 @@ public class SurveyResponse {
         this.surveyId = surveyId;
     }
 
-    public int getPid() {
+    public String getPid() {
         return pid;
     }
 
-    public void setPid(int pid) {
+    public void setPid(String pid) {
         this.pid = pid;
     }
 
